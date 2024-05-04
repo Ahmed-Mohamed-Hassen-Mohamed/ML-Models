@@ -34,7 +34,7 @@ async def get_embedding_fingerprint(body: list[str]):
 async def predict(face: UploadFile = File(...), fingerprint: UploadFile = File(...)):
     try:
         
-        return {"id": 2329}
+        return {"id": "662a74a21d0cbead611eeddf"}
     except Exception as e:
         return {"error": str(e)}
 
