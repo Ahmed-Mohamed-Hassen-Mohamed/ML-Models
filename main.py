@@ -3,16 +3,16 @@ from pydantic import BaseModel
 from typing import List
 
 app = FastAPI()
-# gp api>uvicorn main:app
+
 class Item(BaseModel):
     id: str
     embedding: List[List[float]]
 
 @app.post("/get_embedding_face/")
-async def get_embedding_face(body: list[str]):
+async def get_embedding_face(images: List[UploadFile] = File(...)):
     try:
-        # images: List[UploadFile] = File(...)
-        count = len(body)
+    
+        count = len(images)
         print("Number of images received:", count)
         
         return { "embedding": [[1,2,3,4],[4,3,2,1]] }
@@ -20,10 +20,10 @@ async def get_embedding_face(body: list[str]):
         return {"error": str(e)}
 
 @app.post("/get_embedding_fingerprint/")
-async def get_embedding_fingerprint(body: list[str]):
+async def get_embedding_fingerprint(images: List[UploadFile] = File(...)):
     try:
-        # Print the count of images received
-        count = len(body)
+        
+        count = len(images)
         print("Number of images received:", count)
 
         return { "embedding": [[4,3,2,1],[1,2,3,4]] }
@@ -33,8 +33,8 @@ async def get_embedding_fingerprint(body: list[str]):
 @app.post("/predict/")
 async def predict(face: UploadFile = File(...), fingerprint: UploadFile = File(...)):
     try:
-        
-        return {"id": "662a74a21d0cbead611eeddf"}
+        childId = "666190f5d648b81bcc5ee331"
+        return {"id": childId}
     except Exception as e:
         return {"error": str(e)}
 
